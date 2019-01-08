@@ -1,6 +1,6 @@
 class Enigma
 
-  attr_reader :character_set
+  attr_reader :character_set,
               :keys
 
   def initialize
