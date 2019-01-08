@@ -13,7 +13,14 @@ class EnigmaTest < MiniTest::Test
     assert_instance_of Enigma, enigma
   end
 
+  def test_that_it_initiates_with_a_character_set
+    enigma = Enigma.new
+    expected = ("a".."z").to_a << " "
+    assert_equal expected, enigma.character_set
+  end
+
   def test_it_can_encrypt_a_message
+    skip
     enigma = Enigma.new
 
     expected = { encryption: "keder ohulw",
@@ -23,5 +30,7 @@ class EnigmaTest < MiniTest::Test
 
     assert_equal expected, enigma.encrypt("hello world", "02715", "040895")
   end
+
+
 
 end
