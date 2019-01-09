@@ -25,4 +25,6 @@ class Enigma
     offsets.split('')
   end
 
+  
+
 end

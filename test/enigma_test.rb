@@ -48,16 +48,15 @@ class EnigmaTest < MiniTest::Test
     assert_equal expected, enigma.generate_offsets("121220")
   end
 
+  def test_it_can_encrypt_a_message
+    enigma = Enigma.new
 
-  # def test_it_can_encrypt_a_message
-  #   enigma = Enigma.new
-  #
-  #   expected = { encryption: "keder ohulw",
-  #                key: "02715",
-  #                date: "040895"
-  #              }
-  #
-  #   assert_equal expected, enigma.encrypt("hello world", "02715", "040895")
-  # end
+    expected = { encryption: "keder ohulw",
+                 key: "02715",
+                 date: "040895"
+               }
+
+    assert_equal expected, enigma.encrypt("hello world", "02715", "040895")
+  end
 
 end
