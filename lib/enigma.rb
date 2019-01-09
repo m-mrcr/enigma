@@ -19,4 +19,10 @@ class Enigma
     end
   end
 
+  def generate_offsets(date)
+    date_squared = date.to_i ** 2
+    offsets = date_squared.to_s[-4..-1]
+    offsets.split('')
+  end
+
 end
