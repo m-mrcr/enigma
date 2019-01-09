@@ -37,19 +37,45 @@ class Enigma
     end
   end
 
-  def generate_index_setting(string)
+  def generate_index_setting(message)
     index_set = { A: [], B: [], C: [], D: [] }
     initial_index = 0
-    all_indexes = (initial_index..string.length).to_a
+    all_indexes = (initial_index..message.length).to_a
     index_set.each do |letter, setting|
       all_indexes.each do |number|
         index_set[letter] << number
         3.times {all_indexes.shift}
       end
       initial_index += 1
-      all_indexes = (initial_index..string.length).to_a
+      all_indexes = (initial_index..message.length).to_a
     end
     return index_set
+  end
+
+  def encrypt(message, keys, offsets)
+    generate_shifts(keys, offsets)
+    index_set = generate_index_setting(message)
+    encryption = message.chars.map.with_index do |character, index|
+      if index_set[:A].include?(index)
+        index = @character_set.find_index(character)
+        rotation = @character_set.rotate(@shifts[:A])
+        rotation[index]
+      elsif index_set[:B].include?(index)
+        index = @character_set.find_index(character)
+        rotation = @character_set.rotate(@shifts[:B])
+        rotation[index]
+      elsif index_set[:C].include?(index)
+        index = @character_set.find_index(character)
+        rotation = @character_set.rotate(@shifts[:C])
+        rotation[index]
+      elsif index_set[:D].include?(index)
+        index = @character_set.find_index(character)
+        rotation = @character_set.rotate(@shifts[:D])
+        rotation[index]
+      end
+    end
+    message = encryption.join
+    {encryption: message, key: keys, date: offsets}
   end
 
 end

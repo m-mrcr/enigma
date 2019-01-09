@@ -59,7 +59,7 @@ class EnigmaTest < MiniTest::Test
   def test_that_it_can_generate_index_setting
     enigma = Enigma.new
 
-    expected = {{:A=>[0, 4, 8], :B=>[1, 5, 9], :C=>[2, 6, 10], :D=>[3, 7, 11]}}
+    expected = {:A=>[0, 4, 8], :B=>[1, 5, 9], :C=>[2, 6, 10], :D=>[3, 7, 11]}
 
     assert_equal expected, enigma.generate_index_setting("hello world")
 
