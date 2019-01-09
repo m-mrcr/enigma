@@ -12,6 +12,9 @@ class Keys
   end
 
   def generate_keys(number)
+    if number == 0
+       number = random_number
+    end
       number = number.to_s.split('')
       @keys.each do |letter, num|
         @keys[letter] = number.slice(0..1).join.to_i
