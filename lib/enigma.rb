@@ -37,4 +37,19 @@ class Enigma
     end
   end
 
+  def generate_index_setting(string)
+    index_set = { A: [], B: [], C: [], D: [] }
+    initial_index = 0
+    all_indexes = (initial_index..string.length).to_a
+    index_set.each do |letter, setting|
+      all_indexes.each do |number|
+        index_set[letter] << number
+        3.times {all_indexes.shift}
+      end
+      initial_index += 1
+      all_indexes = (initial_index..string.length).to_a
+    end
+    return index_set
+  end
+  
 end
