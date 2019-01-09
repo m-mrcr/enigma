@@ -1,5 +1,6 @@
 require 'simplecov'
 SimpleCov.start
+
 require 'pry'
 require 'minitest/autorun'
 require 'minitest/pride'
@@ -10,7 +11,6 @@ class KeysTest < MiniTest::Test
     keys = Keys.new(82349)
 
     assert_instance_of Keys, keys
-
   end
 
   def test_that_it_initiates_with_empty_keys
@@ -21,18 +21,25 @@ class KeysTest < MiniTest::Test
     assert_equal expected, keys.keys
   end
 
-  def test_that_it_can_generate_keys
-    keys = Keys.new(87522)
-
-    expected = {A: 87, B: 75, C: 52, D: 22}
-
-    assert_equal expected, keys.generate_keys("87522")
-  end
-
   def test_that_it_can_find_random_number
     keys = Keys.new(87522)
 
-    assert_equal (1..99999).to_a.sample, keys.random_number
+    number = keys.random_number
+
+    expected = (0..99999).to_a.map { |number| "%05d" % number.to_s }
+
+    assert expected.include?(number)
+  end
+
+  def test_that_it_can_generate_keys
+    number = 0
+    keys = Keys.new(number)
+
+    x = (0..99).to_a.map { |number| "%02d" % number }.sample
+    keys.generate_keys(number)
+    expected = {A: x, B: x, C: x, D: x}
+
+    assert expected[:A].include?(x)
   end
 
 end
