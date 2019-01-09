@@ -22,19 +22,20 @@ class Enigma
 
   def generate_offsets(date)
     date = date.to_i
-     = date.to_i ** 2
-    @offsets = date_squared.to_s[-4..-1]
-    @offsets.split('')
+    squared = (date ** 2).to_s[-4..-1].split('')
+    @offsets.each do |letter, number|
+      @offsets[letter] = squared[0].to_i
+      squared.shift.to_i
+    end
   end
 
   def generate_shifts(keys, offsets)
     generate_keys(keys)
     generate_offsets(offsets)
     @shifts = @keys.merge(@offsets) do |position, keys_number, offsets_number|
-      keys_nummber.to_i + offsets_nummber.to_i
+      keys_number.to_i + offsets_number.to_i
     end
   end
-
 
   def encrypt(message, key, date)
     message = message.downcase

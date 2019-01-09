@@ -43,7 +43,7 @@ class EnigmaTest < MiniTest::Test
   def test_that_it_can_generate_offsets
     enigma = Enigma.new
 
-    expected = ["8", "4", "0", "0"]
+    expected = {A: 8, B: 4, C: 0, D: 0}
 
     assert_equal expected, enigma.generate_offsets("121220")
   end
@@ -51,7 +51,9 @@ class EnigmaTest < MiniTest::Test
   def test_that_it_can_generate_shifts
     enigma = Enigma.new
 
-    assert_equal jj, enigma.generate_shifts("87522", "121220")
+    expected = {A: 95, B: 79, C: 52, D: 22}
+
+    assert_equal expected, enigma.generate_shifts("87522", "121220")
   end
 
   # def test_it_can_encrypt_a_message
