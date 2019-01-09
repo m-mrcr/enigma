@@ -14,10 +14,10 @@ class EnigmaTest < MiniTest::Test
 
   end
 
-  def test_that_it_initiates_with_a_character_set
+  def test_that_it_knows_about_characters
     enigma = Enigma.new
     expected = ("a".."z").to_a << " "
-    assert_equal expected, enigma.character_set
+    assert_equal expected, enigma.characters
   end
 
   def test_that_it_initiates_with_empty_keys

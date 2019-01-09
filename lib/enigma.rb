@@ -1,12 +1,14 @@
 require 'date'
+require './lib/characters'
+
 class Enigma
 
-  attr_reader :character_set,
-              :keys,
+  include Characters
+
+  attr_reader :keys,
               :offsets
 
   def initialize
-    @character_set = ("a".."z").to_a << " "
     @keys = {A: 0, B: 0, C: 0, D: 0}
     @offsets = {A: 0, B: 0, C: 0, D: 0}
     @shifts = {}
@@ -57,20 +59,20 @@ class Enigma
     index_set = generate_index_setting(message)
     encryption = message.chars.map.with_index do |character, index|
       if index_set[:A].include?(index)
-        index = @character_set.find_index(character)
-        rotation = @character_set.rotate(@shifts[:A])
+        index = characters.find_index(character)
+        rotation = characters.rotate(@shifts[:A])
         rotation[index]
       elsif index_set[:B].include?(index)
-        index = @character_set.find_index(character)
-        rotation = @character_set.rotate(@shifts[:B])
+        index = characters.find_index(character)
+        rotation = characters.rotate(@shifts[:B])
         rotation[index]
       elsif index_set[:C].include?(index)
-        index = @character_set.find_index(character)
-        rotation = @character_set.rotate(@shifts[:C])
+        index = characters.find_index(character)
+        rotation = characters.rotate(@shifts[:C])
         rotation[index]
       elsif index_set[:D].include?(index)
-        index = @character_set.find_index(character)
-        rotation = @character_set.rotate(@shifts[:D])
+        index = characters.find_index(character)
+        rotation = characters.rotate(@shifts[:D])
         rotation[index]
       end
     end
@@ -83,20 +85,20 @@ class Enigma
     index_set = generate_index_setting(message)
     decryption = message.chars.map.with_index do |character, index|
       if index_set[:A].include?(index)
-        index = @character_set.find_index(character)
-        rotation = @character_set.rotate(-@shifts[:A])
+        index = characters.find_index(character)
+        rotation = characters.rotate(-@shifts[:A])
         rotation[index]
       elsif index_set[:B].include?(index)
-        index = @character_set.find_index(character)
-        rotation = @character_set.rotate(-@shifts[:B])
+        index = characters.find_index(character)
+        rotation = characters.rotate(-@shifts[:B])
         rotation[index]
       elsif index_set[:C].include?(index)
-        index = @character_set.find_index(character)
-        rotation = @character_set.rotate(-@shifts[:C])
+        index = characters.find_index(character)
+        rotation = characters.rotate(-@shifts[:C])
         rotation[index]
       elsif index_set[:D].include?(index)
-        index = @character_set.find_index(character)
-        rotation = @character_set.rotate(-@shifts[:D])
+        index = characters.find_index(character)
+        rotation = characters.rotate(-@shifts[:D])
         rotation[index]
       end
     end
