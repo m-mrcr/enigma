@@ -37,8 +37,4 @@ class Enigma
     end
   end
 
-  def encrypt(message, key, date)
-    message = message.downcase
-  end
-
 end
