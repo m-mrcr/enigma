@@ -22,11 +22,17 @@ class KeysTest < MiniTest::Test
   end
 
   def test_that_it_can_generate_keys
-    enigma = Enigma.new
+    keys = Keys.new(87522)
 
     expected = {A: 87, B: 75, C: 52, D: 22}
 
-    assert_equal expected, enigma.generate_keys("87522")
+    assert_equal expected, keys.generate_keys("87522")
+  end
+
+  def test_that_it_can_find_random_number
+    keys = Keys.new(87522)
+
+    assert_equal (1..99999).to_a.sample, keys.random_number
   end
 
 end

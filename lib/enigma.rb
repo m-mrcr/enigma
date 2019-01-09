@@ -12,14 +12,6 @@ class Enigma
     @shifts = {}
   end
 
-  def generate_keys(number)
-  number = number.to_s.split('')
-    @keys.each do |letter, num|
-      @keys[letter] = number.slice(0..1).join.to_i
-      number.shift
-    end
-  end
-
   def generate_offsets(date)
     date = date.to_i
     squared = (date ** 2).to_s[-4..-1].split('')
