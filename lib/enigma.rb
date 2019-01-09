@@ -51,5 +51,5 @@ class Enigma
     end
     return index_set
   end
-  
+
 end
