@@ -20,11 +20,7 @@ class EnigmaTest < MiniTest::Test
     assert_equal expected, enigma.characters
   end
 
-  def test_that_it_initiates_with_empty_keys
-    enigma = Enigma.new
-    expected = {A: 0, B: 0, C: 0, D: 0}
-    assert_equal expected, enigma.keys
-  end
+
 
   def test_that_it_initiates_with_empty_offsets
     enigma = Enigma.new

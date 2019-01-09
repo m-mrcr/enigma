@@ -5,11 +5,9 @@ class Enigma
 
   include Characters
 
-  attr_reader :keys,
-              :offsets
+  attr_reader :offsets
 
   def initialize
-    @keys = {A: 0, B: 0, C: 0, D: 0}
     @offsets = {A: 0, B: 0, C: 0, D: 0}
     @shifts = {}
   end
