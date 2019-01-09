@@ -78,7 +78,7 @@ class Enigma
     {encryption: message, key: keys, date: offsets}
   end
 
-  def decrypt(message, keys, offsets)
+  def decrypt
     generate_shifts(keys, offsets)
     index_set = generate_index_setting(message)
     decryption = message.chars.map.with_index do |character, index|
@@ -103,5 +103,4 @@ class Enigma
     message = decryption.join
     {encryption: message, key: keys, date: offsets}
   end
-
 end
